@@ -311,7 +311,7 @@ structure learning \parencite{Gens2013}:
   \begin{table}[ht]
     \centering
     \begin{tabular}{c c}
-      \includegraphics[width=0.5\linewidth]{figures/nltcs-depth.pdf}&\includegraphics[width=0.5\linewidth]{figures/plants-depth.pdf}
+      \includegraphics[width=0.45\linewidth]{figures/nltcs-depth.pdf}&\includegraphics[width=0.45\linewidth]{figures/plants-depth.pdf}
     \end{tabular}
   \end{table}
 \end{frame}
@@ -340,13 +340,35 @@ structure learning \parencite{Gens2013}:
 
 \begin{frame}
   \frametitle{Early stopping exp}
+  \begin{table}[ht]
+    \centering
+    \begin{tabular}{c c}
+      \includegraphics[width=0.45\linewidth]{figures/levels-comp}&\includegraphics[width=0.45\linewidth]{figures/plants-ll-depth}
+    \end{tabular}
+  \end{table}
+
 \end{frame}
 
 \begin{frame}
   \frametitle{Strengthening by model averaging}
   \footnotesize
-  Interpreting sum nodes as general additive estimators. They can be
-  learned as bagged estimators.
+  Interpreting sum nodes as \emph{general additive estimators}. Leveraging
+  classic statistical tools to learn them:
+  \textbf{\emph{bagging}}.\par\bigskip
+
+  Draw $k$ bootstrapped samples from the data, then grow an SPN $S_{B_i}$ on
+  each of them. Join them into a single SPN $\hat{S}$ with a sum node:
+  $$\hat{S}=\sum_{i=1}^{k}\frac{1}{k}S_{B_{i}}$$
+
+  More robustness and less variance in the model.\par\bigskip
+
+  Exponential number of nodes if done for each sum node (bootstrapping
+  only at the root).\par\bigskip
+
+  Two variants in the experiments: \textsf{SPN-BB} and
+  \textsf{SPN-BTB}, whether Chow-Liu trees are employed or not.
+
+  
 \end{frame}
 
 \begin{frame}
@@ -400,6 +422,15 @@ structure learning \parencite{Gens2013}:
 
 \begin{frame}
   \frametitle{Conclusions and Further work}
+  \begin{itemize}
+  \item Structure quality evaluation matters
+  \item Deeper networks by applying a simplicity bias when splitting
+  \item Regularized SPNs by introducing Chow-Liu trees as leaves
+    \item More robust and accurate SPNs with bootstrapped sum nodes
+  \end{itemize}
+
+
+  
 \end{frame}
 
 \begin{frame}
