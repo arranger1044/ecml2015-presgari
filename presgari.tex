@@ -2,10 +2,16 @@
 
 \usepackage{booktabs}
 \usepackage{dcolumn}
-% \usepackage{colortbl}
+\usepackage{colortbl}
+\usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage[style=authoryear-comp, backref=true]{biblatex}
+
+%
+% custom colors
+\definecolor{untractable_red}{RGB}{209, 25, 25}
+\definecolor{tractable_green}{RGB}{0, 153, 51}
 
 
 \usetheme{enziteto}
@@ -16,6 +22,21 @@
 
 \begin{document}
 
+\newlength{\custombulletheight}
+\setlength{\custombulletheight}{\dimexpr0.5\ht1-0.5\ht2}
+
+\newcommand{\plusbullet}{\raisebox{\custombulletheight}{\hbox{\tiny\textcolor{lacamlilac}{$\boldsymbol{\oplus}$}}\hspace{-2pt}}}
+
+\setbeamertemplate{itemize item}{\raisebox{.21ex}{\hbox{\tiny\textcolor{lacamlilac}{$\boldsymbol{\oplus}$}}\hspace{-2pt}}}
+\setbeamertemplate{itemize subitem}{\raise .2ex\hbox{\tiny\textcolor{lacamlilac}{$\boldsymbol{\otimes}$}}\hspace{-3pt}}
+\setbeamertemplate{itemize subsubitem}{\textcolor{lacamlilac}{$\oplus$}}
+\setbeamertemplate{bibliography item}{\hspace{10pt}\raise .2ex\hbox{\tiny\textcolor{lacamlilac}{$\boldsymbol{\oplus}$}}}
+
+
+% 
+% custom bullets
+
+% \renewcommand\labelitemi{\raisebox{\custombulletheight}{\hbox{\tiny\textcolor{lacamlilac}{$\boldsymbol{\oplus}$}}\hspace{-2pt}}}
 \title{Simplifying, Regularizing and Strengthening Sum-Product Network Structure Learning}
 \author{Antonio  Vergari, Nicola  {Di Mauro} and Floriana Esposito}
 \institute{Lacam$@$DIB$@$Uniba}
@@ -51,17 +72,21 @@
 \begin{frame}[t]
   \frametitle{PGMs and Tractability}
   \begin{table}[!ht]
-    \setlength{\tabcolsep}{22pt}
+    \setlength{\tabcolsep}{25pt}
     \centering
     \begin{tabular}{c c}
       
       \includegraphics[width=0.33\linewidth]{figures/mrf} &
                                                             \includegraphics[width=0.33\linewidth]{figures/bn}\\
+      \addlinespace[-0.2cm]
       \scriptsize  $P(\mathbf{X})=\frac{1}{Z}\prod_{c}\phi_{c}(\mathbf{X}_{c})$
                                                           & 
-      \scriptsize $P(\mathbf{X})=\prod_{i=1}^nP(X_{i}|\mathbf{Pa}_{i})$\\
+      \scriptsize
+                                                            $P(\mathbf{X})=\prod_{i=1}^nP(X_{i}|\mathbf{Pa}_{i})$\\
+      \addlinespace[0.5cm]
       \includegraphics[width=0.33\linewidth]{figures/clt} &
-      \includegraphics[width=0.33\linewidth]{figures/nf}\\
+                                                            \includegraphics[width=0.33\linewidth]{figures/nf}\\
+      \addlinespace[-0.2cm]
       \scriptsize
       $P(\mathbf{X})=\prod_{i=1}^nP(X_{i}|Pa_{i})$ &
       \scriptsize $P(\mathbf{X})=\prod_{i=1}^nP(X_{i})$                                                              
@@ -72,21 +97,24 @@
 \begin{frame}[t]
   \frametitle{PGMs and Tractability}
   \begin{table}[!ht]
-    \setlength{\tabcolsep}{22pt}
+    \setlength{\tabcolsep}{25pt}
     \centering
     \begin{tabular}{c c}
       
       \includegraphics[width=0.33\linewidth]{figures/mrf} &
                                                             \includegraphics[width=0.33\linewidth]{figures/bn}\\
-      \scriptsize  untractable & \scriptsize untractable \\
+      \addlinespace[-0.2cm]
+      \scriptsize\color{untractable_red}  \textbf{\emph{untractable}} & \scriptsize\color{untractable_red} \textbf{\emph{untractable}} \\
+      \addlinespace[0.5cm]
       \includegraphics[width=0.33\linewidth]{figures/clt} &
-      \includegraphics[width=0.33\linewidth]{figures/nf}\\
-      \scriptsize \emph{tractable} & \scriptsize \emph{tractable}                                                              
+                                                            \includegraphics[width=0.33\linewidth]{figures/nf}\\
+      \addlinespace[-0.2cm]
+      \scriptsize\color{tractable_green} \emph{\textbf{tractable}} & \scriptsize\color{tractable_green} \emph{\textbf{tractable}}                                                              
     \end{tabular}
   \end{table}
 \end{frame}
 
-\begin{frame}[t]
+\begin{frame}
   \frametitle{Sum-Product Networks (I)}
   \begin{minipage}{0.45\linewidth}
     \centering
@@ -100,7 +128,7 @@
     and \textbf{product} nodes.\\
 
     Product nodes define factorizations over independent vars, sum
-    nodes mixtures.\\
+    nodes mixtures. Leaves are tractable univariate distributions.\\
 
     %Sum node children weights are the parameters of the model.\\
 
