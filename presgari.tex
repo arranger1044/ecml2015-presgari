@@ -6,6 +6,7 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{amsmath}
+\usepackage{wrapfig}
 \usepackage[style=authoryear-comp, backref=true]{biblatex}
 
 %
@@ -92,6 +93,7 @@
       \scriptsize $P(\mathbf{X})=\prod_{i=1}^nP(X_{i})$                                                              
     \end{tabular}
   \end{table}
+  %\footnotesize Inference on Probabilistic Graphical Models (PGMs) is generally untractable.
 \end{frame}
 
 \begin{frame}[t]
@@ -112,31 +114,43 @@
       \scriptsize\color{tractable_green} \emph{\textbf{tractable}} & \scriptsize\color{tractable_green} \emph{\textbf{tractable}}                                                              
     \end{tabular}
   \end{table}
+  %\footnotesize To guarantee polynomial inference, tractable models trade off model expressiveness.
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
   \frametitle{Sum-Product Networks (I)}
-  \begin{minipage}{0.45\linewidth}
+  \footnotesize
+   SPNs are DAGs \emph{compiling} the partition function of a joint pdf into a \textbf{\emph{deep}} architecture of \textbf{sum}
+   and \textbf{product} nodes.\par\bigskip
+
+   Product nodes define factorizations over independent components, sum
+   nodes weighted mixtures. Leaves are tractable univariate distributions.\par\bigskip
+
+   \begin{minipage}{0.45\linewidth}
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/spn-prod}\\
-    \includegraphics[width=0.73\linewidth]{figures/spn-sum}
+    \includegraphics[width=0.72\linewidth]{figures/spn-prod}\\
+    \includegraphics[width=0.653\linewidth]{figures/spn-sum}
   \end{minipage}%
   \begin{minipage}{0.5\linewidth}
-    \vspace{0pt}
-    \footnotesize
-    \emph{Compiling} the partition function of a pdf into a \textbf{\emph{deep}} architecture of \textbf{sum}
-    and \textbf{product} nodes.\\
+    \vspace{7pt}
+    % \footnotesize
+    % SPNs are DAGs \emph{compiling} the partition function of a joint pdf into a \textbf{\emph{deep}} architecture of \textbf{sum}
+    % and \textbf{product} nodes.\\
 
-    Product nodes define factorizations over independent vars, sum
-    nodes mixtures. Leaves are tractable univariate distributions.\\
+    % Product nodes define factorizations over independent components, sum
+    % nodes mixtures. Leaves are tractable univariate distributions.\\
 
     %Sum node children weights are the parameters of the model.\\
 
     Products over nodes with different scopes (\emph{decomposability}) and
     sums over nodes with same scopes (\emph{completeness}) guarantee modeling
-    a pdf (\emph{validity}).\\
+    a pdf (\emph{validity}).\par\bigskip
 
-    Considering only valid SPNs of \emph{alternated layers of sum and products}.
+    The size of the network is the number of edges in it.\par\bigskip
+
+    The depth of the network is the number of alternated layers.\par\bigskip
+
+    % Considering only valid SPNs of \emph{alternated layers of sum and products}.
 
     
 
@@ -355,14 +369,23 @@ structure learning \parencite{Gens2013}:
       get accurate naive factorizations
     \end{itemize}\bigskip
 
+    
+    
     Substituting naive factorizations with Bayesian trees as leaf
     distributions $P(\mathbf{X}) = \prod_{j}P(X_j|Pa_{j})$:
+    \begin{wrapfigure}{l}{0.35\textwidth}
+      \vspace{-20pt}
+      \begin{center}
+        \includegraphics[width=0.35\textwidth]{figures/spn-clt}
+      \end{center}
+      \vspace{-20pt}
+    \end{wrapfigure}
     \begin{itemize}
     \item learnable with Chow-Liu algorithm
     \item still tractable multivariate distributions for marginals,
       conditionals and MPE
-    \item same or higher accuracy for larger vlaues of $m$
-    \item possibly reducing structure complexity even more  
+    \item same or higher accuracy
+    \item less complex structures for larger values of $m$
     \end{itemize}
 \end{frame}
 
