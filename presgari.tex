@@ -9,6 +9,8 @@
 \usepackage{wrapfig}
 \usepackage[style=authoryear-comp, backref=true]{biblatex}
 
+\usepackage[font=scriptsize]{caption}
+
 %
 % custom colors
 \definecolor{untractable_red}{RGB}{209, 25, 25}
@@ -336,52 +338,42 @@
 
   No need for $\lambda$ anymore.\par\bigskip
 
-  Objectives:
-  \begin{itemize}
-  \item not committing to complex structures too early  
-  \item same expressive power: successive splits allow for more node children
-  \item reducing node out fan increases the depth
-  \item same accuracy, smaller networks
-  \end{itemize}
-  
+  \raisebox{45pt}{\begin{minipage}[t]{0.65\linewidth}
+    Objectives:
+    \begin{itemize}
+    \item not committing to complex structures too early
+    \item same expressive power as LearnSPN
+    \item reducing node out fan increases the depth
+    \item same accuracy, smaller networks
+    \end{itemize}
+  \end{minipage}}\hspace{-5pt}\begin{minipage}[t]{0.3\linewidth}
+    \begin{center}
+      \includegraphics[width=0.9\linewidth]{figures/learnspn-4.pdf}
+    \end{center}
+  \end{minipage}
 \end{frame}
 
 \begin{frame}
   \frametitle{Depth VS Size}
-  \begin{table}[ht]
-    \centering
-    \begin{tabular}{c c}
-      \includegraphics[width=0.45\linewidth]{figures/nltcs-depth.pdf}&\includegraphics[width=0.45\linewidth]{figures/plants-depth.pdf}
-    \end{tabular}
-  \end{table}
-\end{frame}
+%   \begin{table}[ht]
+%     \centering
+%     \begin{tabular}{c c}
+%       \includegraphics[width=0.45\linewidth]{figures/nltcs-depth.pdf}&\includegraphics[width=0.45\linewidth]{figures/plants-depth.pdf}
+%     \end{tabular}
+%   \end{table}
 
-
-
-\begin{frame}
-  \frametitle{Experimental setting}
-  \footnotesize
-Classical setting for \emph{\textbf{generative}} graphical models
-structure learning \parencite{Gens2013}:
-  \begin{itemize}
-    \itemsep 7pt
-  \item comparing the \emph{\textbf{average log-likelihood}} on predicting instances from a test set
-  \item 19 binary datasets from classification, recommendation,
-    frequent pattern mining\dots \parencite{Lowd2010} \parencite{Haaren2012}
-    \item Training 75\% Validation 10\% Test 15\%  splits (no cv)
-  \item Model selection via \textit{grid search} in the same parameter space:
-    \begin{itemize}
-      \footnotesize
-    \item $\lambda \in \{0.2, 0.4, 0.6, 0.8\}$,
-    \item $\rho \in \{5, 10, 15, 20\}$, 
-    \item $m \in \{1, 50, 100, 500\}$, 
-    \item $\alpha \in \{ 0.1, 0.2, 0.5, 1.0, 2.0\}$
-    \end{itemize}
-  \item comparing our variants against \textsf{LearnSPN},
-    \textsf{ID-SPN} and \textsf{MT}~\parencite{Meila2000}
-  \end{itemize}
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[width=0.6\linewidth]{figures/plants-depth.pdf}
+      \caption{Comparing network sizes and depths while varying the max
+        number of sum node children splits ($k\in\{10, 4, 2\}$). Each dot is an experiment
+        in the grid search hyperparameter space performed by
+        \textsf{SPN-B} on the dataset Plants.}
+    \end{center}
+  \end{figure}
 
 \end{frame}
+
 
 \begin{frame}
   \frametitle{Regularizing by effective early stopping}
@@ -406,7 +398,7 @@ structure learning \parencite{Gens2013}:
     \end{wrapfigure}
     \begin{itemize}
     \item learnable with Chow-Liu algorithm
-    \item still tractable multivariate distributions for marginals,
+    \item still tractable (linear) multivariate distributions for marginals,
       conditionals and MPE
     \item same or higher accuracy
     \item less complex structures for larger values of $m$
@@ -414,13 +406,38 @@ structure learning \parencite{Gens2013}:
 \end{frame}
 
 \begin{frame}
-  \frametitle{Early stopping exp}
-  \begin{table}[ht]
-    \centering
-    \begin{tabular}{c c}
-      \includegraphics[width=0.45\linewidth]{figures/levels-comp}&\includegraphics[width=0.45\linewidth]{figures/plants-ll-depth}
-    \end{tabular}
-  \end{table}
+  \frametitle{CLT ll}
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[width=0.7\linewidth]{figures/ll-depth/10-8/pumsb-star-ll-depth}
+      \caption{Comparing the network sizes against
+        the average test log-likelihood obtained by \textsf{LearnSPN},
+        \textsf{SPN-B} and \textsf{SPN-BT}. Each dot is an experiment
+        in the grid search performed for the dataset Pumsb-star.}
+    \end{center}
+  \end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Effective early stopping}
+  % \begin{table}[ht]
+  %   \centering
+  %   \begin{tabular}{c c}
+  %     \includegraphics[width=0.45\linewidth]{figures/levels-comp}&\includegraphics[width=0.45\linewidth]{figures/plants-ll-depth}
+  %   \end{tabular}
+  % \end{table}
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[width=0.7\linewidth]{figures/ll-m/10-8/pumsb-star-ll-m}
+      \caption{Comparing the values for $m$ (10, 50, 100, 500) against
+        the average test log-likelihood obtained by \textsf{LearnSPN},
+        \textsf{SPN-B} and \textsf{SPN-BT}. Each dot is an experiment
+        in the grid search performed for the dataset Pumsb-star.}
+    \end{center}
+  \end{figure}
 
 \end{frame}
 
@@ -442,12 +459,89 @@ structure learning \parencite{Gens2013}:
 
   Two variants in the experiments: \textsf{SPN-BB} and
   \textsf{SPN-BTB}, whether Chow-Liu trees are employed or not.
-
-  
 \end{frame}
 
 \begin{frame}
-  \frametitle{LL exp}
+  \frametitle{Bagging exp}
+  \begin{table}[ht]
+    \centering
+    \begin{tabular}[t]{c c}
+      \includegraphics[width=0.4\linewidth]{figures/curves/pumsb-star-png.pdf}&\includegraphics[width=0.4\linewidth]{figures/curves/dna-png.pdf}\\
+      % \includegraphics[width=0.4\linewidth]{figures/curves/dna}&\includegraphics[width=0.4\linewidth]{figures/curves/nltcs}\\
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Experimental setting}
+  \footnotesize
+  Classical setting for \emph{\textbf{generative}} PGMs
+  structure learning~\parencite{Gens2013}:
+  \begin{itemize}
+    \item 19 binary datasets from classification, recommendation,
+    frequent pattern mining\dots \parencite{Lowd2010} \parencite{Haaren2012}
+  \item Training 75\% Validation 10\% Test 15\%  splits (no cv)
+  \end{itemize}
+
+  Observing both structure quality parameters and the network
+  accuracy:
+  \begin{itemize}
+   \item test set \emph{\textbf{average log-likelihood}}
+   \item network \textbf{\emph{size}} (\# edges) and network \textbf{\emph{depth}} (\# levels)
+  \end{itemize}
+   
+  We perform a model selection via a \textit{grid search} in the same parameter
+  space for \textsf{LearnSPN}, \textsf{SPN-B}, \textsf{SPN-BT}:\\[-3pt]
+  
+    \begin{minipage}[t]{0.35\linewidth}
+      \begin{itemize}
+      \item \scriptsize$\lambda \in \{0.2, 0.4, 0.6, 0.8\}$,
+      \item \scriptsize$\rho \in \{5, 10, 15, 20\}$, 
+      \end{itemize}
+    \end{minipage}\begin{minipage}[t]{0.5\linewidth}
+      \begin{itemize}
+      \item \scriptsize$m \in \{1, 50, 100, 500\}$, 
+      \item \scriptsize$\alpha \in \{ 0.1, 0.2, 0.5, 1.0, 2.0\}$.
+      \end{itemize}
+    \end{minipage}
+
+    Up to 50 components and best grid parameters for \textsf{SPN-BB} and \textsf{SPN-BTB}.
+    Comparing ll against \textsf{LearnSPN},
+    \textsf{ID-SPN} and \textsf{MT}~\parencite{Meila2000}
+
+  \end{frame}
+
+
+  \begin{frame}
+    \frametitle{Network sizes}
+
+    \begin{figure}[htbp]
+      \begin{center}
+        \includegraphics[width=0.65\linewidth]{figures/edges-comp.pdf}
+        \caption{Comparing network sizes
+          for the networks scoring the best log-likelihoods in the grid
+          search as obtained by \textsf{LearnSPN}, \textsf{SPN-B} and
+          \textsf{SPN-BT} for each dataset.}
+      \end{center}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Network depths}
+
+    \begin{figure}[htbp]
+      \begin{center}
+        \includegraphics[width=0.65\linewidth]{figures/levels-comp.pdf}
+        \caption{Comparing network depths
+          for the networks scoring the best log-likelihoods in the grid
+          search as obtained by \textsf{LearnSPN}, \textsf{SPN-B} and
+          \textsf{SPN-BT} for each dataset.}
+      \end{center}
+    \end{figure}
+  \end{frame}
+
+\begin{frame}
+  \frametitle{Log-likelihoods}
   \tiny
   \begin{table}[!htbp]
     \centering
@@ -479,21 +573,15 @@ structure learning \parencite{Gens2013}:
       \bottomrule
     \end{tabular}
     \caption[Experimentation results]{Average test
-      log likelihoods for all algorithms.}
+      log likelihoods for the best networks learned by all
+      algorithms on all datasets after the grid search. In bold
+      the values that are statistically better than all the others
+      according to a Wilcoxon signed rank test with $p$-value of 0.05.}
     \label{tab:resexp}
   \end{table}
 
 \end{frame}
-\begin{frame}
-  \frametitle{Bagging exp}
-  \begin{table}[ht]
-    \centering
-    \begin{tabular}[t]{c c}
-      \includegraphics[width=0.4\linewidth]{figures/curves/baudio}&\includegraphics[width=0.4\linewidth]{figures/curves/bnetflix}\\
-      \includegraphics[width=0.4\linewidth]{figures/curves/dna}&\includegraphics[width=0.4\linewidth]{figures/curves/nltcs}\\
-    \end{tabular}
-  \end{table}
-\end{frame}
+
 
 \begin{frame}
   \frametitle{Conclusions and Further work}
