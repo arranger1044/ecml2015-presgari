@@ -146,9 +146,9 @@
     sums over nodes with same scopes (\emph{completeness}) guarantee modeling
     a pdf (\emph{validity}).\par\bigskip
 
-    The size of the network is the number of edges in it.\par\bigskip
+    The \emph{\textbf{size}} of the network is the number of \emph{edges} in it.\par\bigskip
 
-    The depth of the network is the number of alternated layers.\par\bigskip
+    The \emph{\textbf{depth}} of the network is the number of alternated \emph{layers}.\par\bigskip
 
     % Considering only valid SPNs of \emph{alternated layers of sum and products}.
 
@@ -221,23 +221,23 @@
 
   \footnotesize
   
-  Tractability is guaranteed if the network size is polynomial in \#
+  Tractable inference is guaranteed \emph{if the network size is polynomial} in \#
   vars.\par\bigskip
 
-  Comparing network sizes is better than comparing inference times.\par\bigskip
+  Smaller networks, faster inference (comparing network sizes is better than comparing inference times).\par\bigskip
 
-  Deeper networks are possibly more expressively efficient~\parencite{Martens2014,Zhao2015}\par\bigskip
+  \emph{Deeper} networks are possibly \emph{more expressively efficient}~\emph{\parencite{Martens2014,Zhao2015}}.\par\bigskip
 
-  Overcomplex networks do not  generalize well\par\bigskip
+  Structural simplicity as a bias: overcomplex networks may not generalize well.\par\bigskip
   
-  Structure quality desiderata: smaller but accurate, deeper but not
-  wider, SPNs
+  Structure quality desiderata: \textbf{\textbf{smaller}} but \textbf{\textbf{accurate}}, \textbf{\emph{deeper}} but not
+  wider, SPNs.
 
   
   
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
   \frametitle{LearnSPN (I)}
   \footnotesize
   Build a tree-like SPN by recursively split the data matrix:
@@ -248,73 +248,95 @@
     \[
     G(X_i, X_j) =  2\sum_{x_i \sim X_i}\sum_{x_j \sim X_j}c(x_i, x_j)\cdot \log\frac{c(x_i, x_j)\cdot |T|}{c(x_i)c(x_j)}
     \]
-  \item clustering instances with \textbf{\emph{online Hard-EM}} with cluster penalty
+  \item clustering instances into $|C|$ sets with \textbf{\emph{online Hard-EM}} with cluster penalty
     $\lambda$:
     \[\begin{array}{cc}
         Pr(\mathbf{X})= \sum_{C_i \in \mathbf{C}}\prod_{X_j \in \mathbf{X}}Pr(X_j|C_i)Pr(C_i)\\
         % & Pr(C_i) \propto e^{-\lambda |\mathbf{C}|\cdot |\mathbf{X}|}\\
       \end{array}\]
+      weights are estimated as cluster proportions
   \item if there are less than $m$ instances, put a \textbf{\emph{naive
     factorization}} over leaves
   \item each univariate distribution get \emph{\textbf{ML estimation}} smoothed by $\alpha$  
-  \end{itemize}
+  \end{itemize}\par\bigskip
+
+  Hyperparameter space: $\{\rho, \lambda, m, \alpha\}$.
   
-  % \textbf{Online Hard-EM} with restarts to cluster instances $T$ with an exp prior ($Pr(C_i) \propto e^{-\lambda |\mathbf{C_i}|\cdot |\mathbf{X}|}$) on clusters to avoid overfitting:
-  % \[\begin{array}{cc}
-  %     Pr(\mathbf{X})= \sum_{C_i \in \mathbf{C}}\prod_{X_j \in \mathbf{X}}Pr(X_j|C_i)Pr(C_i)\\
-  %     % & Pr(C_i) \propto e^{-\lambda |\mathbf{C}|\cdot |\mathbf{X}|}\\
-  %   \end{array}\]
-  %   found clusters become \emph{sum node children} with parameters $w_i = |C_i|/|T|$.\par
-  %   \vspace{\baselineskip}
-  %   Features $\mathbf{X}$ are clustered into independent components via a greedy procedure based on a \textbf{G Test} over pairs $X_i$,$X_j$:
-  %   \[
-  %   G(X_i, X_j) =  2\sum_{x_i \sim X_i}\sum_{x_j \sim X_j}c(x_i, x_j)\cdot \log\frac{c(x_i, x_j)\cdot |T|}{c(x_i)c(x_j)}
-  %   \]
-  %   which are associated to \emph{product node children}.\par %\par
-  %   % \vspace{\baselineskip}
-  %   If $|T|<m$ consider features independent and create \emph{leaves} by \textbf{smooth laplacian frequence estimation} (with parameter $\alpha$).
 
 \end{frame}
 
 \begin{frame}
-  % \frametitle{LearnSPN (II)}
-  \begin{table}[ht]
-    \centering
-    \begin{tabular}{l l l l}
-      \includegraphics[width=0.228\linewidth]{figures/grid-0}&
-                                                              \includegraphics[width=0.2\linewidth]{figures/grid-1}&
-                                                                                                                      \includegraphics[width=0.2\linewidth]{figures/grid-2}&
-                                                                                                                                                                              \includegraphics[width=0.208\linewidth]{figures/grid-3}\\
-    \end{tabular}
-  \end{table}
-  \hfill\
-  %{\raggedright
-    \begin{table}[ht]
-       \begin{tabular}{r r r}
-         \includegraphics[width=0.2\linewidth]{figures/learnspn-1}&
-                                                                     \includegraphics[width=0.24\linewidth]{figures/learnspn-2}&
-                                                                                                                                 \includegraphics[width=0.30\linewidth]{figures/learnspn-3}\\
-      \end{tabular}
-    \end{table}
-  %}
+
+ \onslide<1-4>{\begin{minipage}[t]{0.3\linewidth}
+     \begin{center}
+       \only<1>{\includegraphics[width=0.8\linewidth]{figures/grid-0}}
+      \only<2-4>{\includegraphics[width=0.715\linewidth]{figures/grid-1}}
+    \end{center}
+  \end{minipage}}\hspace{10pt}\onslide<3-4>{\begin{minipage}[t]{0.3\linewidth}
+    \begin{center}
+      \includegraphics[width=0.72\linewidth]{figures/grid-2}
+    \end{center}
+  \end{minipage}}\hspace{10pt}\onslide<4>{\begin{minipage}[t]{0.3\linewidth}
+    \begin{center}
+      \includegraphics[width=0.735\linewidth]{figures/grid-3}
+    \end{center}
+  \end{minipage}}\\
+  \vspace{15pt}
+  \onslide<2-4>{\raisebox{0pt}{\begin{minipage}[t]{0.3\linewidth}
+    \begin{center}
+      \includegraphics[width=0.715\linewidth]{figures/learnspn-1}
+    \end{center}
+  \end{minipage}}}\hspace{5pt}\onslide<3-4>{\raisebox{-25pt}{\begin{minipage}[t]{0.3\linewidth}
+    \begin{center}
+      \includegraphics[width=0.83\linewidth]{figures/learnspn-2}
+    \end{center}
+  \end{minipage}}}\hspace{4pt}\onslide<4>{\raisebox{-22pt}{\begin{minipage}[t]{0.3\linewidth}
+    \begin{center}
+      \includegraphics[width=1.0\linewidth]{figures/learnspn-3}
+    \end{center}
+  \end{minipage}}}
 \end{frame}
+
+\begin{frame}
+  \frametitle{LearnSPN (II)}
+  \footnotesize
+  
+  \textsf{LearSPN} performs two interleaved \textbf{\emph{greedy
+      hierarchical}} divisive \textbf{\emph{clustering}}
+  processes (co-clutering on the data matrix).\par\bigskip
+
+  Fast and simple. But both processes never look back and are
+  committed to the choices they take.\par\bigskip
+
+  Online EM does not need to specify the number of clusters $k$ in
+  advance. But overcomplex structures are learned by exploding the number of sum
+  node children.\par\bigskip
+
+  Tractable leaf estimation. But naive factorization independence
+  assumptions may be too strong.\par\bigskip
+
+  ML estimations are effective. But they are not robust to noise, they can overfit the training set easily.
+  
+  \end{frame}
 
 \begin{frame}
   \frametitle{Symplifying by limiting node splits}
   \footnotesize
-  \textsf{LearSPN} performs two interleaved \textbf{\emph{greedy
-      hierarchical}} divisive \textbf{\emph{clustering}}
-  processes (co-clustering).\par\bigskip
+  % \textsf{LearSPN} performs two interleaved \textbf{\emph{greedy
+  %     hierarchical}} divisive \textbf{\emph{clustering}}
+  % processes (co-clustering).\par\bigskip
 
-  Each process benefits from the other one improvements/highly suffers
+  Observation: each clustering process benefits from the other one improvements/highly suffers
   from other's mistakes.\par\bigskip
 
   Idea: slowing down the processes by limiting the number of
   nodes to split into. \textsf{SPN-B}, variant of \textsf{LearnSPN} that uses EM
   for mixture modeling with
-  $k=2$ to cluster rows.\par\bigskip
+  $k=2$ to cluster rows.
 
-  Pros:
+  No need for $\lambda$ anymore.\par\bigskip
+
+  Objectives:
   \begin{itemize}
   \item not committing to complex structures too early  
   \item same expressive power: successive splits allow for more node children
@@ -323,6 +345,18 @@
   \end{itemize}
   
 \end{frame}
+
+\begin{frame}
+  \frametitle{Depth VS Size}
+  \begin{table}[ht]
+    \centering
+    \begin{tabular}{c c}
+      \includegraphics[width=0.45\linewidth]{figures/nltcs-depth.pdf}&\includegraphics[width=0.45\linewidth]{figures/plants-depth.pdf}
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+
 
 \begin{frame}
   \frametitle{Experimental setting}
@@ -348,15 +382,6 @@ structure learning \parencite{Gens2013}:
   \end{itemize}
 
 \end{frame}
-\begin{frame}
-  \frametitle{Depth VS Size}
-  \begin{table}[ht]
-    \centering
-    \begin{tabular}{c c}
-      \includegraphics[width=0.45\linewidth]{figures/nltcs-depth.pdf}&\includegraphics[width=0.45\linewidth]{figures/plants-depth.pdf}
-    \end{tabular}
-  \end{table}
-\end{frame}
 
 \begin{frame}
   \frametitle{Regularizing by effective early stopping}
@@ -368,10 +393,9 @@ structure learning \parencite{Gens2013}:
     \item best likelihood structures prefer smaller values for $m$ to
       get accurate naive factorizations
     \end{itemize}\bigskip
-
     
     
-    Substituting naive factorizations with Bayesian trees as leaf
+    Idea: substituting naive factorizations with Bayesian trees as leaf
     distributions $P(\mathbf{X}) = \prod_{j}P(X_j|Pa_{j})$:
     \begin{wrapfigure}{l}{0.35\textwidth}
       \vspace{-20pt}
