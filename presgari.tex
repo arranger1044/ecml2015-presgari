@@ -62,9 +62,10 @@
 \begin{frame}
   \frametitle{Summary}
   \begin{itemize}
-  \item Sum-Product Networks refresher
-  \item Why and How Structure learning
-  \item Simplifying by limiting splits
+    \itemsep 10pt
+  \item Sum-Product Networks and tractable models
+  \item How and why to perform structure learning
+  \item Simplifying by limiting node splits
   \item Regulizing by effective early stopping
   \item Strengthening by model averaging
     \item Conclusions and further works
@@ -163,27 +164,28 @@
 
 \begin{frame}
   \frametitle{Sum-Product Networks (II)}
-  \begin{minipage}{0.45\linewidth}
-    \includegraphics[width=0.8\linewidth]{figures/spn-long}
-  \end{minipage}\begin{minipage}{0.55\linewidth}
+  \begin{minipage}{0.35\linewidth}
+    \includegraphics[width=0.9\linewidth]{figures/spn-long}
+  \end{minipage}\begin{minipage}{0.62\linewidth}
     \footnotesize
-    Bottom-up evaluation of the network: \\
-
-    $S_{X_i}(x_j)=P(X_i=x_j)$
+    Bottom-up evaluation of the network:
+    \begin{align*}
+      \quad&S_{X_i}(x_j)=P(X_i=x_j)\\[10pt]
+      \quad&S_{+}(\mathbf{x})=\sum\limits_{i\in
+                         ch(+)}w_{i}S_{i}(\mathbf{x}),\quad S_{\times}(\mathbf{x})=\prod\limits_{i\in
+      ch(\times)}S_{i}(\mathbf{x})
+    \end{align*}\\[-7pt]
     
-    $S_{+}(\mathbf{x})=\sum\limits_{i\in ch(+)}w_{i}S_{i}(\mathbf{x})$
-
-    $S_{\times}(\mathbf{x})=\prod\limits_{i\in
-      ch(\times)}S_{i}(\mathbf{x})$
-    
-    Inferences linear in the size of the network (\# edges):
+    Inferences linear in the size of the network (\# edges):\\[-5pt]
     \begin{itemize}
     \item $Z = S(*)$
     \item $P(\mathbf{e}) = S(\mathbf{e})/S(*)$
     \item $P(\mathbf{q}| \mathbf{e}) = \frac{P(\mathbf{q},
         \mathbf{e})}{P(\mathbf{e})} = \frac{S(\mathbf{q},
         \mathbf{e})}{S(\mathbf{e})}$
-    \item $MPE(\mathbf{q},\mathbf{e}) = \max_{\mathbf{q}}P(\mathbf{q}, \mathbf{e}) = S^{max}(\mathbf{e})$  
+    \item $MPE(\mathbf{q},\mathbf{e}) = \max_{\mathbf{q}}P(\mathbf{q},
+      \mathbf{e}) = S^{max}(\mathbf{e})$  (by substituting sum nodes
+      with \emph{max} nodes)
     \end{itemize}
      
     
