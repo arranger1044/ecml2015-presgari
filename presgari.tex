@@ -661,8 +661,50 @@
       \includegraphics[width=0.23\linewidth]{figures/plants-depth.pdf}&\includegraphics[width=0.23\linewidth]{figures/ll-depth/10-8/pumsb-star-ll-depth}&\includegraphics[width=0.23\linewidth]{figures/ll-m/10-8/pumsb-star-ll-m}&\includegraphics[width=0.23\linewidth]{figures/curves/dna-png.pdf}\\
       % \includegraphics[width=0.4\linewidth]{figures/curves/dna}&\includegraphics[width=0.4\linewidth]{figures/curves/nltcs}\\
     \end{tabular}
+  \end{table}      
+\end{frame}
+
+\begin{frame}
+  \frametitle{Times}
+  \begin{table}[htbp]
+    \centering
+    \tiny
+    \setlength{\tabcolsep}{3pt}  
+    \begin{tabular}{r r r r r r r r}
+      \toprule
+      & \textsf{LearnSPN} & \textsf{SPN-B} & \textsf{SPN-BT} & \textsf{ID-SPN} & \textsf{SPN-BB} & \textsf{SPN-BTB} & \textsf{MT} \\
+      \midrule                                                                                     
+      \textbf{NLTCS}      & 183               & 114            & 108             & 310             & 1004            & 1041             & 290   \\ 
+      \textbf{MSNBC}      & 7354              & 5922           & 5774            & 46266           & 7963            & 8275             & 8645  \\ 
+      \textbf{KDDCup2k}   & 5800              & 3946           & 4525            & 32067           & 10633           & 12148            & 39857 \\ 
+      \textbf{Plants}     & 1156              & 1420           & 276             & 18833           & 7515            & 3023             & 7414  \\ 
+      \textbf{Audio}      & 1146              & 1561           & 131             & 21009           & 10466           & 4113             & 6566  \\ 
+      \textbf{Jester}     & 1289              & 789            & 687             & 10412           & 17753           & 8566             & 3064  \\ 
+      \textbf{Netflix}    & 1331              & 2369           & 152             & 30294           & 14871           & 4768             & 11402 \\ 
+      \textbf{Accidents}  & 839               & 1006           & 722             & 15472           & 9198            & 8280             & 14073 \\ 
+      \textbf{Retail}     & 253               & 173            & 161             & 4041            & 2317            & 2505             & 320   \\ 
+      \textbf{Pumsb-star} & 230               & 1010           & 612             & 20952           & 7819            & 7790             & 18533 \\ 
+      \textbf{DNA}        & 140               & 87             & 122             & 3040            & 2022            & 3049             & 228   \\ 
+      \textbf{Kosarek}    & 225               & 1515           & 416             & 17799           & 16583           & 3642             & 18782 \\ 
+      \textbf{MSWeb}      & 369               & 1711           & 1444            & 19682           & 16881           & 18273            & 36076 \\ 
+      \textbf{Book}       & 457               & 832            & 389             & 61248           & 27473           & 16630            & 5918  \\ 
+      \textbf{EachMovie}  & 307               & 939            & 946             & 118782          & 22506           & 29355            & 12100 \\ 
+      \textbf{WebKB}      & 307               & 1960           & 490             & 45451           & 29265           & 34952            & 931   \\ 
+      \textbf{Reuters-52} & 2538              & 5256           & 4333            & 70864           & 36109           & 135970           & 15082 \\ 
+      % \textbf{20 NewsG}  & 8897              & 16799          & 13095           & 0               & 13384           & 25156            & 98239\\ 
+      \textbf{BBC}        & 1136              & 2645           & 2479            & 61471           & 56271           & 121007           & 1324  \\ 
+      \textbf{Ad}         & 668               & 1585           & 1356            & 87522           & 72632           & 58777            & 6850  \\ 
+      \bottomrule
+    \end{tabular}
+    \caption[Experimental times]{Times (in seconds) taken to learn the best
+      models on each dataset for \textsf{LearnSPN},
+      \textsf{SPN-B}, \textsf{SPN-BT}, \textsf{SPN-BB}, \textsf{SPN-BTB}
+      and \textsf{MT} and with default parameters values for
+      \textsf{ID-SPN}. Experiments run on a 4-core Intel Xeon E312xx
+      (Sandy Bridge) @2.0 GHz with 8Gb of
+      RAM and Ubuntu 14.04.1, kernel 3.13.0-39.}
+    \label{tab:times}
   \end{table}
-      
 \end{frame}
 
 \end{document}
