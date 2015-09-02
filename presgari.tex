@@ -7,7 +7,7 @@
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{wrapfig}
-\usepackage[style=authoryear-comp, backref=true]{biblatex}
+\usepackage[style=authoryear-comp]{biblatex}
 
 \usepackage[font=scriptsize]{caption}
 
@@ -78,9 +78,9 @@
   \footnotesize
   The main task on \emph{\textbf{Probabilistic Graphical Models}} (PGMs), \emph{inference}, is untractable.\par\bigskip
   
-  \emph{\textbf{Tractable}} PGMs are recently gaining interest: tree based models~\parencite{Meila2000}, Arithmetic Circuits (ACs)~\parencite{Rooshenas2014},
+  \emph{\textbf{Tractable}} PGMs are recently gaining interest: tree based models~\emph{\parencite{Meila2000}}, Arithmetic Circuits (ACs)~\emph{\parencite{Rooshenas2014-short}},
   \emph{\textbf{Sum-Product Networks}}
-  (SPNs)~\parencite{Poon2011a}.\par\bigskip
+  (SPNs)~\emph{\parencite{Poon2011a}}.\par\bigskip
 
   Sum-Product Networks structure learning: \emph{\textbf{LearnSPN}}.\par\bigskip
 
@@ -235,7 +235,7 @@
   
 
   \item \textbf{ID-SPN}: turning LearnSPN in log-likelihood guided expansion of sub-networks
-    approximated by Arithmetic Circuits~\emph{\parencite{Rooshenas2014}}
+    approximated by Arithmetic Circuits~\emph{\parencite{Rooshenas2014-short}}
 
   \end{itemize}
   \vspace{6pt}
@@ -489,11 +489,16 @@
 \begin{frame}
   \frametitle{Bagging exp}
   \begin{table}[ht]
+    \setlength{\tabcolsep}{2pt}  
     \centering
     \begin{tabular}[t]{c c}
-      \includegraphics[width=0.4\linewidth]{figures/curves/pumsb-star-png.pdf}&\includegraphics[width=0.4\linewidth]{figures/curves/dna-png.pdf}\\
+      \includegraphics[width=0.5\linewidth]{figures/curves/pumsb-star-png.pdf}&\includegraphics[width=0.5\linewidth]{figures/curves/dna-png.pdf}\\
       % \includegraphics[width=0.4\linewidth]{figures/curves/dna}&\includegraphics[width=0.4\linewidth]{figures/curves/nltcs}\\
     \end{tabular}
+    \caption{Comparing test log-likelihoods for \textsf{SPN-BB} and
+      \textsf{SPN-BTB} while increasing the number of components against \textsf{LearnSPN}, \textsf{MT} and
+      \textsf{ID-SPN} best models accuracies for Pumsb\_star (left)
+      and DNA (right)}
   \end{table}
 \end{frame}
 
@@ -501,10 +506,10 @@
   \frametitle{Experimental setting}
   \footnotesize
   Classical setting for \emph{\textbf{generative}} PGMs
-  structure learning~\parencite{Gens2013}:
+  structure learning~\emph{\parencite{Gens2013}}:
   \begin{itemize}
     \item 19 binary datasets from classification, recommendation,
-    frequent pattern mining\dots \parencite{Lowd2010} \parencite{Haaren2012}
+    frequent pattern mining\dots~\emph{\parencite{Lowd2010}}~\emph{\parencite{Haaren2012}}
   \item Training 75\% Validation 10\% Test 15\%  splits (no cv)
   \end{itemize}
 
@@ -532,7 +537,7 @@
 
     Up to 50 components and best grid parameters for \textsf{SPN-BB} and \textsf{SPN-BTB}.
     Comparing ll against \textsf{LearnSPN},
-    \textsf{ID-SPN} and \textsf{MT}~\parencite{Meila2000}
+    \textsf{ID-SPN} and \textsf{MT}~\emph{\parencite{Meila2000}}.
 
   \end{frame}
 
