@@ -59,17 +59,40 @@
   \end{frame}
 }
 
+% \begin{frame}
+%   \frametitle{Summary}
+%   \begin{itemize}
+%     \itemsep 10pt
+%   \item Sum-Product Networks and tractable models
+%   \item How and why to perform structure learning
+%   \item Simplifying by limiting node splits
+%   \item Regulizing by effective early stopping
+%   \item Strengthening by model averaging
+%     \item Conclusions and further works
+%   \end{itemize}
+% \end{frame}
+
+
 \begin{frame}
-  \frametitle{Summary}
-  \begin{itemize}
-    \itemsep 10pt
-  \item Sum-Product Networks and tractable models
-  \item How and why to perform structure learning
-  \item Simplifying by limiting node splits
-  \item Regulizing by effective early stopping
-  \item Strengthening by model averaging
-    \item Conclusions and further works
-  \end{itemize}
+  \frametitle{Introduction}
+  \footnotesize
+  The main task on \emph{\textbf{Probabilistic Graphical Models}} (PGMs), \emph{inference}, is untractable.\par\bigskip
+  
+  \emph{\textbf{Tractable}} PGMs are recently gaining interest: tree based models~\parencite{Meila2000}, Arithmetic Circuits (ACs)~\parencite{Rooshenas2014},
+  \emph{\textbf{Sum-Product Networks}}
+  (SPNs)~\parencite{Poon2011a}.\par\bigskip
+
+  Sum-Product Networks structure learning: \emph{\textbf{LearnSPN}}.\par\bigskip
+
+  Improving LearnSPN in three ways:
+  \begin{enumerate}[I]
+  %\itemsep 10pt
+  % \item Sum-Product Networks and tractable models
+  % \item How and why to perform structure learning
+  \item \textbf{simplifying} by limiting node splits 
+  \item \textbf{regularizing} by effective early stopping
+  \item \textbf{strengthening} by model averaging 
+  \end{enumerate}
 \end{frame}
 
 
@@ -324,7 +347,7 @@
   \end{frame}
 
 \begin{frame}
-  \frametitle{Symplifying by limiting node splits}
+  \frametitle{Simplifying by limiting node splits}
   \footnotesize
   % \textsf{LearSPN} performs two interleaved \textbf{\emph{greedy
   %     hierarchical}} divisive \textbf{\emph{clustering}}
@@ -356,7 +379,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Depth VS Size}
+  \frametitle{SPN-B: depth VS size}
 %   \begin{table}[ht]
 %     \centering
 %     \begin{tabular}{c c}
@@ -408,7 +431,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{CLT ll}
+  \frametitle{SPN-BT: preserving likelihoods}
 
   \begin{figure}[htbp]
     \begin{center}
@@ -424,7 +447,7 @@
 
 
 \begin{frame}
-  \frametitle{Effective early stopping}
+  \frametitle{SPN-BT: effective early stopping}
   % \begin{table}[ht]
   %   \centering
   %   \begin{tabular}{c c}
