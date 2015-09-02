@@ -608,16 +608,23 @@
 \end{frame}
 
 
-\begin{frame}
-  \frametitle{Conclusions and Further work}
+\begin{frame}[t]
+  \frametitle{Conclusions}
   \begin{itemize}
   \item Structure quality evaluation matters
   \item Deeper networks by applying a simplicity bias when splitting
   \item Regularized SPNs by introducing Chow-Liu trees as leaves
-    \item More robust and accurate SPNs with bootstrapped sum nodes
+  \item More robust and accurate SPNs with bootstrapped sum nodes
+  \end{itemize}\bigskip
+
+  {\usebeamerfont{frametitle}\usebeamercolor{frametitle}
+    Further works}\\[3pt]
+  \begin{itemize}
+    \item Are other sum node interpretations as gam effective?
+  \item Is it possible to compress learned structures?
+  \item How these variations influence representation learning?
+    \item How can these variations be generalized to other tractable PGMs?
   \end{itemize}
-
-
   
 \end{frame}
 
@@ -627,6 +634,36 @@
   \printbibliography
 \end{frame}
 
+\begin{frame}
+  \frametitle{Discuss}
+  \begin{minipage}[t][][t]{1.5309cm}
+    \includegraphics[width=\linewidth]{figures/grid-0}
+  \end{minipage}\hspace{10pt}\begin{minipage}[t]{1.3462cm}
+    \includegraphics[width=\linewidth]{figures/grid-1}
+  \end{minipage}\hspace{10pt}\begin{minipage}[t]{1.3462cm}
+    \includegraphics[width=\linewidth]{figures/grid-2}
+  \end{minipage}\hspace{10pt}\begin{minipage}[t]{1.3909cm}
+    \includegraphics[width=\linewidth]{figures/grid-3}                                                             \end{minipage}
+
+  \begin{minipage}[t]{1.70cm}
+      \includegraphics[width=\linewidth]{figures/learnspn-1}
+  \end{minipage}\hspace{3pt}\begin{minipage}[t]{2.35cm}
+      \includegraphics[width=\linewidth]{figures/learnspn-4}
+  \end{minipage}\hspace{3pt}\begin{minipage}[t]{2.43cm}
+      \includegraphics[width=\linewidth]{figures/learnspn-3}                                             
+  \end{minipage}\hspace{3pt}\begin{minipage}[t]{2.43cm}
+      \includegraphics[width=\linewidth]{figures/spn-clt}                                             
+  \end{minipage}\\[-25pt]
+  \begin{table}[ht]
+    \setlength{\tabcolsep}{3pt}  
+    \centering
+    \begin{tabular}[t]{c c c c}
+      \includegraphics[width=0.23\linewidth]{figures/plants-depth.pdf}&\includegraphics[width=0.23\linewidth]{figures/ll-depth/10-8/pumsb-star-ll-depth}&\includegraphics[width=0.23\linewidth]{figures/ll-m/10-8/pumsb-star-ll-m}&\includegraphics[width=0.23\linewidth]{figures/curves/dna-png.pdf}\\
+      % \includegraphics[width=0.4\linewidth]{figures/curves/dna}&\includegraphics[width=0.4\linewidth]{figures/curves/nltcs}\\
+    \end{tabular}
+  \end{table}
+      
+\end{frame}
 
 \end{document}
 
