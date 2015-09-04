@@ -36,6 +36,7 @@
 \setbeamertemplate{bibliography item}{\hspace{10pt}\raise .2ex\hbox{\tiny\textcolor{lacamlilac}{$\boldsymbol{\oplus}$}}}
 
 
+
 % 
 % custom bullets
 
@@ -49,6 +50,70 @@
 \group{Machine Learning}
 \institutelogo{\includegraphics[width=25pt]{figures/unibaba}}
 \lablogo{\includegraphics[width=35pt]{figures/lacam}}
+
+\makeatletter
+\defbeamertemplate*{title page}{custom-enziteto}[1][]
+{
+  \begin{minipage}[t]{0.1\linewidth}
+    \vspace{0pt}
+    % \includegraphics[width=25pt]{Figures/unibaba}
+    \ifdefined\@institutelogo
+    \@institutelogo
+    \fi
+  \end{minipage}
+  \begin{minipage}[t]{0.28\linewidth}
+    \vspace{5pt}
+    \flushleft
+    {\usebeamerfont{institute}\insertinstitute\par}
+    \vspace{2pt}
+    \ifdefined\@department
+    \tiny\@department
+    \fi
+  \end{minipage}
+  \ifdefined\@laboratory
+  \hspace{15pt}
+  \begin{minipage}[t]{0.12\linewidth}
+    \vspace{0pt}
+    \ifdefined\@lablogo
+    \@lablogo
+    \else
+    \hspace{10pt}
+    \fi
+  \end{minipage}
+  \begin{minipage}[t]{0.40\linewidth}
+    \vspace{5pt}
+    \flushleft
+    \tiny\textbf{\@laboratory}\par
+    \vspace{2pt}
+    \ifdefined\@group
+    \@group
+    \fi
+  \end{minipage}
+  \par
+  \fi
+  \vspace{10pt}
+  
+  \Large\usebeamerfont{title}\usebeamercolor{title
+    page}\inserttitle\par%\textcolor{lacamlilac}{\inserttitle}\par
+  \ifdefined\@subtitle
+  \vspace{5pt}
+  \small\usebeamerfont{subtitle}\textcolor{lacamlilac}{\insertsubtitle}\par
+  \fi
+  \vspace{15pt}
+  \usebeamerfont{author}\insertauthor\par
+  
+  \ifdefined\@gliph
+  \vspace{7pt}
+  \@gliph\par
+  \vspace{7pt}
+  \else
+  \vspace{21pt}
+  \fi
+
+  {\vspace{-15pt}\usebeamerfont{author} ECML-PKDD 2015} - {\usebeamerfont{date} 7 - 11 September Porto, Portugal}
+  %\usebeamerfont{date}\insertdate\par
+}
+\makeatother
 
 
 {
@@ -223,7 +288,7 @@
   
   Automatic discovery of latent vars.\par\bigskip
 
-   Constraint-based search formulation. Discover hidden variables for sum node mixtures and independences
+   \emph{Constraint-based search} formulation. Discover hidden variables for sum node mixtures and independences
   for product node components:
   \begin{itemize}
     \itemsep 6pt
